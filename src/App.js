@@ -15,9 +15,18 @@ class App extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const { inputText, message } = this.state;
-    this.setState({message: this.state.inputText});
-    this.setState({inputText: ''});
-  }
+    if (!inputText) {
+      this.setState({ isEmpty: false });
+      setInterval(() => {
+        this.setState({ isEmpty: true });
+      }, 2000);
+      // console.log("clicked");
+    }
+    if(inputText) {
+      this.setState({ message: this.state.inputText });
+    }
+    this.setState({ inputText: "" });
+  };
   render() {
     return (
       <div className="container">
